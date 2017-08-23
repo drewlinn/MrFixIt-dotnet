@@ -1,4 +1,12 @@
 ﻿body {
     padding-top: 70px;
     color: navy;
+    background-image: url("http://www.wallpapersonly.net/wallpapers/mechanical-workshop-1280x800.jpg");
+    background-color: #cccccc;
 }
+
+
+h4 {
+    text-shadow: 2px 2px #f4aa42;
+}
+
