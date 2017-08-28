@@ -14,16 +14,21 @@
         
         @if (Job.Worker == null)
         {
-        <li class="btn">This job is unclaimed. @Html.ActionLink("Claim This Job", "Claim", new { @text = @Job.Title, id = Job.JobId })</li>
+            <li class="claim-job">
+                This job is unclaimed.
+                <div id="status"></div>
+            </li>
         }
         else
         {
             <li class="btn">This Job is claimed by @Job.Worker.FirstName @Job.Worker.LastName</li>
-
         }
+
+        @*@if (Job.Worker == null)
+        {
+        <li class="btn">This job is unclaimed. @Html.ActionLink("Claim This Job", "Claim", new { @text = @Job.Title, id = Job.JobId })</li>
+        }*@
     </ul>
 
 
-    <hr />
 }
-

@@ -9,6 +9,7 @@
     text-shadow: 1px 1px #458dd1;
     font-weight: bold;
 }
+
 a {
     color: #ffffff;
     text-shadow: #000000;
@@ -27,7 +28,10 @@ a {
 .panel-body {
     background-color: #3476af;
     border: 3px #4084b2;
-    border-style: inset;    
+    border-style: inset;
+    white-space: normal;
+    word-break: break-all;  
+    word-wrap: break-word; 
 }
 .panel {
     background-color: #57665f;

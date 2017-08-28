@@ -8,9 +8,10 @@ using MrFixIt.Models;
 namespace MrFixIt.Migrations
 {
     [DbContext(typeof(MrFixItContext))]
-    partial class MrFixItContextModelSnapshot : ModelSnapshot
+    [Migration("20170828231328_AvailableReplaceAvaliable")]
+    partial class AvailableReplaceAvaliable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
