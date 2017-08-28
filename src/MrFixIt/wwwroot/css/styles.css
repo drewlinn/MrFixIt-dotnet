@@ -1,22 +1,32 @@
 ﻿body {
     padding-top: 70px;
-    color: navy;
+    color: #000000;
     background-image: url("../content/background.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-}
-
-
-h4 {
-    text-shadow: 2px 2px #f4aa42;
+    text-shadow: 1px 1px #458dd1;
+    font-weight: bold;
 }
 
 .jumbotron {
     background-image: url("../content/banner.png");
-     background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
+    height: 500px;
+    width: 100%;
+}
+.panel-heading {
+    background-color: #3476af;
+    border: 3px #4084b2;
+    border-style: inset;
+}
+.panel-body {
+    background-color: #3476af;
+    border: 3px #4084b2;
+    border-style: inset;    
+}
+.panel {
+    background-color: #57665f;
+    margin: 15px 15px 15px 15px 15px;
+    padding: 15px 15px 15px 15px;
 }
