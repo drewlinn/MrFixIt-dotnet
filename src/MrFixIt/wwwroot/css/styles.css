@@ -9,6 +9,10 @@
     text-shadow: 1px 1px #458dd1;
     font-weight: bold;
 }
+a {
+    color: #ffffff;
+    text-shadow: #000000;
+}
 
 .jumbotron {
     background-image: url("../content/banner.png");
