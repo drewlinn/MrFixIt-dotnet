@@ -9,7 +9,7 @@ namespace MrFixIt.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Avaliable",
+                name: "Available",
                 table: "Workers");
 
             migrationBuilder.AddColumn<bool>(
@@ -26,7 +26,7 @@ namespace MrFixIt.Migrations
                 table: "Workers");
 
             migrationBuilder.AddColumn<bool>(
-                name: "Avaliable",
+                name: "Available",
                 table: "Workers",
                 nullable: false,
                 defaultValue: false);

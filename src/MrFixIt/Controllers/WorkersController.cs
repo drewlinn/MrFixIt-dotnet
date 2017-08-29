@@ -23,16 +23,34 @@ namespace MrFixIt.Controllers
             }
             else
             {
-                return RedirectToAction("Create");
+                return RedirectToAction("Index");
             }
+        }
+        public IActionResult Edit(int id)
+        {
+            var thisWorker = db.Workers.FirstOrDefault(items => items.WorkerId == id);
+            return View(thisWorker);
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var thisWorker = db.Workers.FirstOrDefault(items => items.WorkerId == id);
+            return View(thisWorker);
+        }
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var thisWorker = db.Workers.FirstOrDefault(items => items.WorkerId == id);
+            db.Workers.Remove(thisWorker);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         public IActionResult Create()
         {
             return View();
         }
-
-
+        
         [HttpPost]
         public IActionResult Create(Worker worker)
         {
