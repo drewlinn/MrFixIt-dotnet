@@ -1,0 +1,25 @@
+﻿
+@model MrFixIt.Models.Worker
+
+@{
+    ViewData["Title"] = "Worker Profile - Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Are you sure you want to Delete this Worker Profile?</h2>
+
+
+@Html.DisplayNameFor(model => model.FirstName) : @Html.DisplayFor(model => model.FirstName)
+@Html.DisplayNameFor(model => model.LastName) : @Html.DisplayFor(model => model.LastName)
+@Html.DisplayNameFor(model => model.Available) : @Html.DisplayFor(model => model.Available)
+@Html.DisplayNameFor(model => model.UserName) : @Html.DisplayFor(model => model.UserName)
+
+
+
+
+@using (Html.BeginForm())
+{
+    <input type="submit" value="Delete" />
+}
+
+<p>@Html.ActionLink("Back to home", "Index")</p>

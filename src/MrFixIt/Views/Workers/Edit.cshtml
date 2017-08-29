@@ -1,0 +1,31 @@
+﻿
+
+@model MrFixIt.Models.Worker
+@{
+    ViewData["Title"] = "Worker Profile - Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit @Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)?</h2>
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.WorkerId)
+
+    <h6>New First Name</h6>
+    @Html.EditorFor(model => model.FirstName)
+
+    <h6>New Last Name</h6>
+    @Html.EditorFor(model => model.LastName)
+
+    <h6>Availability</h6>
+    @Html.DisplayFor(model => model.Available)
+
+    <h6>User Name</h6>
+    @Html.DisplayFor(model => model.UserName)
+
+    <input type="submit" value="Save" class="btn btn-primary" />
+}
+
+@Html.ActionLink("Back to List", "Index")

@@ -23,6 +23,8 @@
         {
             <li class="btn">This Job is claimed by @Job.Worker.FirstName @Job.Worker.LastName</li>
         }
+        @Html.ActionLink("Edit this Listing", "Edit", "Jobs")
+        @Html.ActionLink("Delete this Listing", "Delete", "Jobs")
 
         @*@if (Job.Worker == null)
         {

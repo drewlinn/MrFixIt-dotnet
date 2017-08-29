@@ -1,0 +1,31 @@
+﻿
+
+@model MrFixIt.Models.Job
+@{
+    ViewData["Title"] = "Job Listing - Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit @Html.DisplayFor(model => model.Title)?</h2>
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.JobId)
+
+    @Html.LabelFor(model => model.Title)
+    @Html.EditorFor(model => model.Title)
+
+    @Html.LabelFor(model => model.Description)
+    @Html.EditorFor(model => model.Description)
+
+    <h6>Status</h6>
+    @Html.EditorFor(model => model.Completed)
+
+    <h6>Pending</h6>
+    @Html.EditorFor(model => model.Pending)
+
+    <input type="submit" value="Save" class="btn btn-primary" />
+}
+
+@Html.ActionLink("Back to List", "Index")
