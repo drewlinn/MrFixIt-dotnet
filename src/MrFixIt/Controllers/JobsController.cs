@@ -35,26 +35,35 @@ namespace MrFixIt.Controllers
 
         public IActionResult Edit(int id)
         {
-            var thisJob = db.Jobs.FirstOrDefault(items => items.JobId == id);
+            var thisJob = db.Jobs.FirstOrDefault(jobs => jobs.JobId == id);
             return View(thisJob);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Job job)
+        {
+            job.WorkerId = 1;
+            db.Entry(job).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         public IActionResult Delete(int id)
         {
-            var thisJob = db.Jobs.FirstOrDefault(items => items.JobId == id);
+            var thisJob = db.Jobs.FirstOrDefault(jobs => jobs.JobId == id);
             return View(thisJob);
         }
         [HttpPost, ActionName("Delete")]
         public IActionResult DeleteConfirmed(int id)
         {
-            var thisJob = db.Jobs.FirstOrDefault(items => items.JobId == id);
+            var thisJob = db.Jobs.FirstOrDefault(jobs => jobs.JobId == id);
             db.Jobs.Remove(thisJob);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
         public IActionResult Claim(int id)
         {
-            var thisItem = db.Jobs.FirstOrDefault(items => items.JobId == id);
+            var thisItem = db.Jobs.FirstOrDefault(jobs => jobs.JobId == id);
             return View(thisItem);
         }
 

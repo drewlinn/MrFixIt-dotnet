@@ -57,7 +57,7 @@ namespace MrFixIt.Controllers
             IdentityResult result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
-                return RedirectToAction("Create", "Workers");
+                return RedirectToAction("Login");
             }
             else
             {

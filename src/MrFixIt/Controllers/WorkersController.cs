@@ -31,6 +31,13 @@ namespace MrFixIt.Controllers
             var thisWorker = db.Workers.FirstOrDefault(items => items.WorkerId == id);
             return View(thisWorker);
         }
+        [HttpPost]
+        public IActionResult Edit(Worker worker)
+        {
+            db.Entry(worker).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
         public IActionResult Delete(int id)
         {

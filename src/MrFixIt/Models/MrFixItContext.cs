@@ -18,8 +18,7 @@ namespace MrFixIt.Models
             options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=MrFixIt;integrated security=True");
         }
 
-        public MrFixItContext(DbContextOptions<MrFixItContext> options)
-            : base(options)
+        public MrFixItContext(DbContextOptions<MrFixItContext> options) : base(options)
         {
         }
 
