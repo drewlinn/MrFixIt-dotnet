@@ -2,38 +2,45 @@
     ViewData["Title"] = "Job Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="text-center">
-    <h3>Our Current Jobs</h3>
-    @Html.ActionLink("Add a new job", "Create")
-</div>
-@foreach (var Job in Model)
-{
-    <ul>
-        <li>@Job.Title</li>
-        <li>@Job.Description</li>
+@if (User.Identity.IsAuthenticated)
+{ 
+    <div class="text-center">
+        <h3>Our Current Jobs</h3>
+        @Html.ActionLink("Add a new job", "Create")
+    </div>
+    @foreach (var Job in Model)
+    {
+        <ul>
+            <li>@Job.Title</li>
+            <li>@Job.Description</li>
         
-        @if (Job.Worker == null)
-        {
-            <li class="claim-job">
-                This job is unclaimed.
-                <div id="status"></div>
-            </li>
-        }
-        else
-        {
-            <li class="btn">This Job is claimed by @Job.Worker.FirstName @Job.Worker.LastName</li>
-        }
-        @if (User.Identity.IsAuthenticated)
-        {
-            <li>
-                <p>@Html.ActionLink("View this Listing", "Details", new { id = Job.JobId }) | @Html.ActionLink("Edit", "Edit", new { id = Job.JobId }) | @Html.ActionLink("Delete", "Delete", new { id = Job.JobId })</p>
-            </li>
-        }
-        @*@if (Job.Worker == null)
-        {
-        <li class="btn">This job is unclaimed. @Html.ActionLink("Claim This Job", "Claim", new { @text = @Job.Title, id = Job.JobId })</li>
-        }*@
-    </ul>
-
-
+            @if (Job.Worker == null)
+            {
+                <li class="claim-job">
+                    This job is unclaimed.
+                    <div id="status"></div>
+                </li>
+            }
+            else
+            {
+                <li class="btn">This Job is claimed by @Job.Worker.FirstName @Job.Worker.LastName</li>
+            }
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li>
+                    <p>@Html.ActionLink("View this Listing", "Details", new { id = Job.JobId }) | @Html.ActionLink("Edit", "Edit", new { id = Job.JobId }) | @Html.ActionLink("Delete", "Delete", new { id = Job.JobId })</p>
+                </li>
+            }
+            @*@if (Job.Worker == null)
+            {
+            <li class="btn">This job is unclaimed. @Html.ActionLink("Claim This Job", "Claim", new { @text = @Job.Title, id = Job.JobId })</li>
+            }*@
+        </ul>
+    }
+}
+else
+{
+    <p>You are not currently logged in.</p>
+    <p>@Html.ActionLink("Log In to my account", "Log In", "Account") |
+    @Html.ActionLink("Register a new account", "Register", "Account")</p>
 }

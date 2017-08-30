@@ -4,14 +4,22 @@
 }
 
 @model MrFixIt.Models.Job
-
-<h2>Create a new Job</h2>
-@using (Html.BeginForm())
+@if (User.Identity.IsAuthenticated)
 {
-    @Html.LabelFor(model => model.Title)
-    @Html.TextBoxFor(model => model.Title, new { @required = "true" })
-    @Html.LabelFor(model => model.Description)
-    @Html.TextBoxFor(model => model.Description, new { @required = "true" })
-    <input type="submit" value="Add new job" />
+    <h2>Create a new Job</h2>
+    @using (Html.BeginForm())
+    {
+        @Html.LabelFor(model => model.Title)
+        @Html.TextBoxFor(model => model.Title, new { @required = "true" })
+        @Html.LabelFor(model => model.Description)
+        @Html.TextBoxFor(model => model.Description, new { @required = "true" })
+        <input type="submit" value="Add new job" />
+    }
+    <p>@Html.ActionLink("Back to list", "Index")</p>
 }
-<p>@Html.ActionLink("Back to list", "Index")</p>
+else
+{
+    <p>You are not currently logged in.</p>
+    <p>@Html.ActionLink("Log In to my account", "Log In", "Account") |
+    @Html.ActionLink("Register a new account", "Register", "Account")</p>
+}
