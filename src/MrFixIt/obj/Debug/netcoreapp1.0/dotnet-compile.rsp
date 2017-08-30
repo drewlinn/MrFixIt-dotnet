@@ -215,12 +215,8 @@ C:\Users\epicodus\Documents\Visual Studio 2015\Projects\MrFixIt-dotnet\src\MrFix
 C:\Users\epicodus\Documents\Visual Studio 2015\Projects\MrFixIt-dotnet\src\MrFixIt\Controllers\HomeController.cs
 C:\Users\epicodus\Documents\Visual Studio 2015\Projects\MrFixIt-dotnet\src\MrFixIt\Controllers\JobsController.cs
 C:\Users\epicodus\Documents\Visual Studio 2015\Projects\MrFixIt-dotnet\src\MrFixIt\Controllers\WorkersController.cs
-C:\Users\epicodus\Documents\Visual Studio 2015\Projects\MrFixIt-dotnet\src\MrFixIt\Migrations\20161206233149_Initial.cs
-C:\Users\epicodus\Documents\Visual Studio 2015\Projects\MrFixIt-dotnet\src\MrFixIt\Migrations\20161206233149_Initial.Designer.cs
-C:\Users\epicodus\Documents\Visual Studio 2015\Projects\MrFixIt-dotnet\src\MrFixIt\Migrations\20170828231328_AvailableReplaceAvaliable.cs
-C:\Users\epicodus\Documents\Visual Studio 2015\Projects\MrFixIt-dotnet\src\MrFixIt\Migrations\20170828231328_AvailableReplaceAvaliable.Designer.cs
-C:\Users\epicodus\Documents\Visual Studio 2015\Projects\MrFixIt-dotnet\src\MrFixIt\Migrations\20170829044112_Troubleshooting.cs
-C:\Users\epicodus\Documents\Visual Studio 2015\Projects\MrFixIt-dotnet\src\MrFixIt\Migrations\20170829044112_Troubleshooting.Designer.cs
+C:\Users\epicodus\Documents\Visual Studio 2015\Projects\MrFixIt-dotnet\src\MrFixIt\Migrations\20170830043427_Initial.cs
+C:\Users\epicodus\Documents\Visual Studio 2015\Projects\MrFixIt-dotnet\src\MrFixIt\Migrations\20170830043427_Initial.Designer.cs
 C:\Users\epicodus\Documents\Visual Studio 2015\Projects\MrFixIt-dotnet\src\MrFixIt\Migrations\MrFixItContextModelSnapshot.cs
 C:\Users\epicodus\Documents\Visual Studio 2015\Projects\MrFixIt-dotnet\src\MrFixIt\Models\ApplicationUser.cs
 C:\Users\epicodus\Documents\Visual Studio 2015\Projects\MrFixIt-dotnet\src\MrFixIt\Models\Job.cs

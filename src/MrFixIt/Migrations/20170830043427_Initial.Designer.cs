@@ -8,8 +8,8 @@ using MrFixIt.Models;
 namespace MrFixIt.Migrations
 {
     [DbContext(typeof(MrFixItContext))]
-    [Migration("20170829044112_Troubleshooting")]
-    partial class Troubleshooting
+    [Migration("20170830043427_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -186,7 +186,7 @@ namespace MrFixIt.Migrations
 
                     b.Property<string>("Title");
 
-                    b.Property<int?>("WorkerId");
+                    b.Property<int>("WorkerId");
 
                     b.HasKey("JobId");
 
@@ -254,7 +254,8 @@ namespace MrFixIt.Migrations
                 {
                     b.HasOne("MrFixIt.Models.Worker", "Worker")
                         .WithMany("Jobs")
-                        .HasForeignKey("WorkerId");
+                        .HasForeignKey("WorkerId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
         }
     }

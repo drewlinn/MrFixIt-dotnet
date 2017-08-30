@@ -185,7 +185,7 @@ namespace MrFixIt.Migrations
 
                     b.Property<string>("Title");
 
-                    b.Property<int?>("WorkerId");
+                    b.Property<int>("WorkerId");
 
                     b.HasKey("JobId");
 
@@ -253,7 +253,8 @@ namespace MrFixIt.Migrations
                 {
                     b.HasOne("MrFixIt.Models.Worker", "Worker")
                         .WithMany("Jobs")
-                        .HasForeignKey("WorkerId");
+                        .HasForeignKey("WorkerId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
         }
     }

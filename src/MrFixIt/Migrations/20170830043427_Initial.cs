@@ -174,7 +174,7 @@ namespace MrFixIt.Migrations
                     Description = table.Column<string>(nullable: true),
                     Pending = table.Column<bool>(nullable: false),
                     Title = table.Column<string>(nullable: true),
-                    WorkerId = table.Column<int>(nullable: true)
+                    WorkerId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -184,7 +184,7 @@ namespace MrFixIt.Migrations
                         column: x => x.WorkerId,
                         principalTable: "Workers",
                         principalColumn: "WorkerId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
