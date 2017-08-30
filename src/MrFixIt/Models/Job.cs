@@ -17,7 +17,6 @@ namespace MrFixIt.Models
         public string Description { get; set; }
         public bool Completed { get; set; }
         public bool Pending { get; set; }
-        public int WorkerId { get; set; }
         public virtual Worker Worker { get; set; }
 
         public Worker FindWorker(string UserName)

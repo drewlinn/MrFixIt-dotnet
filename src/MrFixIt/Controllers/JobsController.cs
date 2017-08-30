@@ -42,7 +42,6 @@ namespace MrFixIt.Controllers
         [HttpPost]
         public IActionResult Edit(Job job)
         {
-            job.WorkerId = 1;
             db.Entry(job).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -57,6 +56,7 @@ namespace MrFixIt.Controllers
         public IActionResult DeleteConfirmed(int id)
         {
             var thisJob = db.Jobs.FirstOrDefault(jobs => jobs.JobId == id);
+
             db.Jobs.Remove(thisJob);
             db.SaveChanges();
             return RedirectToAction("Index");
