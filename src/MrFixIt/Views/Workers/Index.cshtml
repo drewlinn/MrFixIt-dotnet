@@ -24,9 +24,10 @@
                     <h5>@Job.Title</h5>
                 }
             }
-            @Html.ActionLink("Edit your Worker Profile", "Edit", "Workers")
-            @Html.ActionLink("Delete your Worker Profile", "Delete", "Workers")
-        } else
+            <p>@Html.ActionLink("View your Profile", "Details", new { id = Model.WorkerId }) | @Html.ActionLink("Edit your Profile", "Edit", new { id = Model.WorkerId }) | @Html.ActionLink("Delete your Profile", "Delete", new { id = Model.WorkerId })</p>
+            
+        }
+        else
         {
             <h4>Hello @User.Identity.Name. You are Logged In</h4>
             @Html.ActionLink("Create a Worker Profile", "Create", "Workers")

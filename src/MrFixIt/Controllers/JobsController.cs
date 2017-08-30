@@ -32,7 +32,12 @@ namespace MrFixIt.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        public IActionResult Details(int id)
+        {
+            var thisJob = db.Jobs.FirstOrDefault(job => job.JobId == id);
 
+            return View(thisJob);
+        }
         public IActionResult Edit(int id)
         {
             var thisJob = db.Jobs.FirstOrDefault(jobs => jobs.JobId == id);

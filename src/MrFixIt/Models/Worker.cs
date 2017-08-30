@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace MrFixIt.Models
 {
-    [Table("Workers")]
+    //[Table("Workers")]
     public class Worker
     {
         [Key]

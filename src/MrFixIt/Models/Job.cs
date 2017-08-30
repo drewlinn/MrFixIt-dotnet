@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MrFixIt.Models
 {
-    [Table("Jobs")]
+    //[Table("Jobs")]
     public class Job
     {
         [Key]

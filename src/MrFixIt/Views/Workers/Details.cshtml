@@ -1,0 +1,13 @@
+﻿@model MrFixIt.Models.Worker
+@{
+    ViewData["Title"] = "Worker Profile - Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Worker Details</h2>
+<hr />
+<p>@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)</p>
+<p>@Html.DisplayNameFor(model => model.Available)</p>
+<p>@Html.DisplayFor(model => model.UserName)</p>
+
+<p>@Html.ActionLink("Back to List", "Index")</p>

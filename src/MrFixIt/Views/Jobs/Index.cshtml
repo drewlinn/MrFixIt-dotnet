@@ -25,8 +25,9 @@
         }
         @if (User.Identity.IsAuthenticated)
         {
-            @Html.ActionLink("Edit this Listing", "Edit", "Jobs")
-            @Html.ActionLink("Delete this Listing", "Delete", "Jobs")
+            <li>
+                <p>@Html.ActionLink("View this Listing", "Details", new { id = Job.JobId }) | @Html.ActionLink("Edit", "Edit", new { id = Job.JobId }) | @Html.ActionLink("Delete", "Delete", new { id = Job.JobId })</p>
+            </li>
         }
         @*@if (Job.Worker == null)
         {

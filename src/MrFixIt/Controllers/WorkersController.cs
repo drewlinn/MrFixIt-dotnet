@@ -26,6 +26,20 @@ namespace MrFixIt.Controllers
                 return View("Index");
             }
         }
+        [HttpPost]
+        public IActionResult Create(Worker worker)
+        {
+            worker.UserName = User.Identity.Name;
+            db.Workers.Add(worker); 
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public IActionResult Details(int id)
+        {
+            var thisWorker = db.Workers.FirstOrDefault(worker => worker.WorkerId == id);
+
+            return View(thisWorker);
+        }
         public IActionResult Edit(int id)
         {
             var thisWorker = db.Workers.FirstOrDefault(items => items.WorkerId == id);
@@ -38,7 +52,6 @@ namespace MrFixIt.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
         public IActionResult Delete(int id)
         {
             var thisWorker = db.Workers.FirstOrDefault(items => items.WorkerId == id);
@@ -52,19 +65,10 @@ namespace MrFixIt.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
         public IActionResult Create()
         {
             return View();
         }
         
-        [HttpPost]
-        public IActionResult Create(Worker worker)
-        {
-            worker.UserName = User.Identity.Name;
-            db.Workers.Add(worker); 
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
     }
 }
