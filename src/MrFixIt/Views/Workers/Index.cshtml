@@ -11,25 +11,25 @@
         @if (Model != null)
         {
             <h4>Hello Worker @Model.FirstName @Model.LastName. You are Logged In</h4>
+            <h3>Your Current Jobs:</h3>
+            @if (Model.Available)
+            {
+                <h2>Please @Html.ActionLink("select a job", "Index", "Jobs").</h2>
+            }
+            else
+            {
+                <p>You are already assigned to a job:</p>
+                @foreach (var Job in Model.Jobs)
+                {
+                    <h5>@Job.Title</h5>
+                }
+            }
+            @Html.ActionLink("Edit your Worker Profile", "Edit", "Workers")
+            @Html.ActionLink("Delete your Worker Profile", "Delete", "Workers")
         } else
         {
-            <h4>Hello Worker @User.Identity.Name. You are Logged In</h4>
+            <h4>Hello @User.Identity.Name. You are Logged In</h4>
+            @Html.ActionLink("Create a Worker Profile", "Create", "Workers")
         }
-        <h3>Your Current Jobs:</h3>
-        @if (Model.Available)
-        {
-            <h2>Please @Html.ActionLink("select a job", "Index", "Jobs").</h2>
-        }
-        else
-        {
-            <p>You are already assigned to a job:</p>
-            @foreach (var Job in Model.Jobs)
-            {
-                <h5>@Job.Title</h5>
-            }
-        }
-
-        @Html.ActionLink("Edit your Worker Profile", "Edit", "Workers")
-        @Html.ActionLink("Delete your Worker Profile", "Delete", "Workers")
     </div>
 }

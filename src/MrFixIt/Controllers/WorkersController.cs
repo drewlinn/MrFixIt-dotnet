@@ -23,7 +23,7 @@ namespace MrFixIt.Controllers
             }
             else
             {
-                return RedirectToAction("Index");
+                return View("Index");
             }
         }
         public IActionResult Edit(int id)
