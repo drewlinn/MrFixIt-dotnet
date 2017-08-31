@@ -6,9 +6,8 @@ $(document).ready(function () {
         event.preventDefault();
         $.ajax({
             url: '@Url.Action("Claim")',
-            type: 'POST',
-            //rewrite this line
-            data: { (form#ClaimJob.thisJob).val() },
+            type: 'GET',
+            data: $(thisJob).val().serialize(),
             dataType: 'json',
             success: function () {
                 console.log(JobId);

@@ -11,14 +11,10 @@
         @if (Job.Worker == null)
         {
             <li class="unclaimed">
-                This job is unclaimed.
+                This job is unclaimed
                 @if (User.Identity.IsAuthenticated)
                 {
-                    //still working on this. so close
-                    <form action="JobClaim" class="claim">
-                        <input type="hidden" name="thisJob" value="@Job.JobId"/>
-                        <button type="submit">Claim this Job</button>
-                    </form>
+                    @Html.ActionLink("Claim this Job", "Claim", new { id = Job.JobId })
                 }
             </li>
         }
@@ -26,7 +22,9 @@
         {
                 @if (User.Identity.Name == Job.Worker.FirstName + Job.Worker.LastName)
                 {
-                    <li class="claimed">You have claimed this Job<button id="unclaim" value="@Job.JobId" onclick="unclaim(this)">Unclaim this Job</button></li> 
+                    <li class="claimed">
+                        You have claimed this Job @Html.ActionLink("Mark Complete", "Complete");
+                    </li> 
                 }
                 else
                 {
@@ -36,7 +34,7 @@
         @if (User.Identity.IsAuthenticated)
         {
             <li>
-                <p>@Html.ActionLink("View this Listing", "Details", new { id = Job.JobId }) | @Html.ActionLink("Edit", "Edit", new { id = Job.JobId }) | @Html.ActionLink("Delete", "Delete", new { id = Job.JobId })</p>
+                <p>@Html.ActionLink("View this Listing", "Details", new { id = Job.JobId })</p>
             </li>
         }
     </ul>
