@@ -66,27 +66,29 @@ namespace MrFixIt.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        public IActionResult Claim(int id)
-        {
-            var thisItem = db.Jobs.FirstOrDefault(jobs => jobs.JobId == id);
-            return View(thisItem);
-        }
+        //public IActionResult Claim(int id)
+        //{
+        //    var thisItem = db.Jobs.FirstOrDefault(jobs => jobs.JobId == id);
+        //    return View(thisItem);
+        //}
 
         [HttpPost]
-        public IActionResult Claim(Job job)
+        //alter parameters
+        public IActionResult Claim(string JobId)
         {
-            job.Worker = db.Workers.FirstOrDefault(i => i.UserName == User.Identity.Name);
-            db.Entry(job).State = EntityState.Modified;
+            Job thisItem = db.Jobs.FirstOrDefault(jobs => jobs.JobId == int.Parse(JobId));
+            thisItem.Worker = db.Workers.FirstOrDefault(i => i.UserName == User.Identity.Name);
+            db.Entry(thisItem).State = EntityState.Modified;
             db.SaveChanges();
-            return Content("Claimed by " + job.Worker.FirstName + " " + job.Worker.LastName, "text/plain");
+            return RedirectToAction("Index");
         }
-
         //public IActionResult Claim(Job job)
         //{
         //    job.Worker = db.Workers.FirstOrDefault(i => i.UserName == User.Identity.Name);
         //    db.Entry(job).State = EntityState.Modified;
         //    db.SaveChanges();
-        //    return RedirectToAction("Index");
+        //    return Content("Claimed by " + job.Worker.FirstName + " " + job.Worker.LastName, "text/plain");
         //}
+
     }
 }
