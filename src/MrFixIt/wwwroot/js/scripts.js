@@ -2,16 +2,31 @@
 
 
 $(document).ready(function () {
-    $('claim').submit(function (event) {
+    $('.Claim').submit(function (event) {
         event.preventDefault();
         $.ajax({
-            url: '@Url.Action("Claim")',
             type: 'GET',
-            data: $(thisJob).val().serialize(),
-            dataType: 'json',
+            url: '@Url.Action("Claim")',
+            success: function (result) {
+                $('#claim-status').html(result);
+            }
+        });
+    });
+    $('Pending').submit(function (event) {
+        $.ajax({
+            url: '@Url.Action("Pending")',
+            type: 'GET',
             success: function () {
-                console.log(JobId);
-                $('#claim-${JobId}').html("This job has been claimed by " + Job.Worker.FirstName + " " + Job.Worker.LastName + ".");
+
+            }
+        });
+    });
+    $('Complete').submit(function (event) {
+        $.ajax({
+            url: '@Url.Action("Complete")',
+            type: 'GET',
+            success: function () {
+
             }
         });
     });

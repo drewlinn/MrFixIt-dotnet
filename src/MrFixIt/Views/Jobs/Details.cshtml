@@ -8,8 +8,6 @@
 <hr />
 <p>@Html.DisplayFor(model => model.Title)</p> 
 <p>@Html.DisplayFor(model => model.Description)</p>
-<p>@Html.DisplayNameFor(model => model.Pending)</p>
-<p>@Html.DisplayFor(model => model.Completed)</p>
 
 @if (Model.Worker == null)
 {
@@ -18,8 +16,10 @@
 else
 {
     @if (User.Identity.Name == Model.Worker.FirstName + " " + Model.Worker.LastName)
-                {
+    {
         <li class="unclaim-job">You have claimed this Job</li>
+        <input class="pending" type="checkbox"/>
+        <input class="complete" type="checkbox"/>
     }
     else
     {

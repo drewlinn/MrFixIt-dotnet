@@ -24,12 +24,12 @@ namespace MrFixIt.Models
 
         public Worker()
         {
-            if (Jobs != null)
-            {
-                Available = false;
-            } else
+            if (Jobs == null)
             {
                 Available = true;
+            } else
+            {
+                Available = false;
             }
         }
 

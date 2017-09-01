@@ -24,7 +24,6 @@ namespace MrFixIt.Controllers
         {
             return View();
         }
-
         [HttpPost]
         public IActionResult Create(Job job)
         {
@@ -73,7 +72,6 @@ namespace MrFixIt.Controllers
         }
 
         [HttpPost]
-        //alter parameters
         //public IActionResult Claim(string JobId)
         //{
         //    Job thisItem = db.Jobs.FirstOrDefault(jobs => jobs.JobId == int.Parse(JobId));
@@ -87,7 +85,7 @@ namespace MrFixIt.Controllers
             job.Worker = db.Workers.FirstOrDefault(i => i.UserName == User.Identity.Name);
             db.Entry(job).State = EntityState.Modified;
             db.SaveChanges();
-            return Content("Claimed by " + job.Worker.FirstName + " " + job.Worker.LastName, "text/plain");
+            return View("Index");
         }
 
     }

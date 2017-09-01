@@ -6,37 +6,35 @@
 @foreach (var Job in Model)
 {
     <ul>
-        <li>@Job.Title</li>
-        <li>@Job.Description</li>
-        @if (Job.Worker == null)
-        {
-            <li class="unclaimed">
-                This job is unclaimed
-                @if (User.Identity.IsAuthenticated)
+        <li>
+            <h4>@Job.Title</h4>
+            <p>@Job.Description</p>
+                @Html.ActionLink("View this Listing", "Details", new { id = Job.JobId })
+            <div class="claim-status">
+                @if (User.Identity.IsAuthenticated && Job.Worker == null)
                 {
-                    @Html.ActionLink("Claim this Job", "Claim", new { id = Job.JobId })
-                }
-            </li>
-        }
-        else
-        {
-                @if (User.Identity.Name == Job.Worker.FirstName + Job.Worker.LastName)
-                {
-                    <li class="claimed">
-                        You have claimed this Job @Html.ActionLink("Mark Complete", "Complete");
-                    </li> 
+                    <p class="unclaimed">
+                        This job is unclaimed
+                        @Html.ActionLink("Claim this Job", "Claim", new { id = Job.JobId })
+                    </p>
                 }
                 else
                 {
-                    <li class="claimed">This Job is claimed by @Job.Worker.FirstName @Job.Worker.LastName</li>
+                    @if (User.Identity.Name == Job.Worker.FirstName + Job.Worker.LastName)
+                    {
+                        <p class="claimed">
+                            You have claimed this Job;
+                        </p> 
+                    }
+                    else
+                    {
+                        <p class="claimed">
+                            This Job is claimed by @Job.Worker.FirstName @Job.Worker.LastName
+                        </p>
+                    }
                 }
-        }
-        @if (User.Identity.IsAuthenticated)
-        {
-            <li>
-                <p>@Html.ActionLink("View this Listing", "Details", new { id = Job.JobId })</p>
-            </li>
-        }
+            </div>
+        </li>
     </ul>
 }
 @if (User.Identity.IsAuthenticated)
