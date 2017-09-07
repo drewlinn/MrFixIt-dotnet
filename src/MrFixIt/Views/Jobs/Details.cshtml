@@ -39,7 +39,7 @@ else
         <p>This job is unclaimed</p>
         @if (User.Identity.IsAuthenticated)
         {
-            <input type="button" class="claim"/>
+            <input type="submit" value="claim" />
             <div id="claim-status"></div>
         }
     }

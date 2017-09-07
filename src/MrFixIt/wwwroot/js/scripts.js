@@ -2,20 +2,24 @@
 
 
 $(document).ready(function () {
-    $('.claim').click(function () {
+    $('.claim').submit(function () {
         event.preventDefault();
         $.ajax({
             type: 'POST',
-            url: '@Url.Action("Claim")',
+            url: 'Jobs/Details/Claim',
+            dataType: 'html',
+            data: { thisJob },
             success: function (result) {
-                $('#claim-status').html(result);
+                    $('#claim-status').html(result);
             }
         });
     });
     $('.pending').click(function () {
         $.ajax({
             type: 'POST',
-            url: '@Url.Action("Pending")',
+            url: 'Jobs/Details/Pending',
+            dataType: 'html',
+            data: { thisJob },
             success: function (result) {
                 $('#job-pending').html(result);
             }
@@ -24,7 +28,9 @@ $(document).ready(function () {
     $('.complete').click(function () {
         $.ajax({
             type: 'POST',
-            url: '@Url.Action("Complete")',
+            url: 'Jobs/Details/Complete',
+            dataType: 'html',
+            data: { thisJob },
             success: function (result) {
                 $('#job-status').html(result);
             }
