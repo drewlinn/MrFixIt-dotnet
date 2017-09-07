@@ -1,0 +1,28 @@
+﻿@model MrFixIt.Models.Job
+
+<script type="text/javascript">
+    $('.pending').submit(function (event) {
+        event.preventDefault();
+        $.ajax({
+            data: $(this).JobId,
+            url: '@Url.Action("Pending")',
+            type: 'POST',
+            success: function (result) {
+                $('#job-pending').html(result);
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+    $('.complete').submit(function (event) {
+        event.preventDefault();
+        $.ajax({
+            data: { id: $(this).val() },
+            url: '@Url.Action("Complete")',
+            type: 'POST',
+            success: function (result) {
+                $('#job-status').html(result);
+            }
+        });
+    });
+</script>

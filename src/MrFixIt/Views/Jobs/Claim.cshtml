@@ -8,19 +8,12 @@
     $('.claim').submit(function (event) {
         event.preventDefault;
         $.ajax({
-            data: { id: $(this).val() },
             url: '@Url.Action("Claim")',
             type: 'POST',
+            dataType: 'json',
+            data: { id: $(this).val().serialize() },
             success: function (result) {
-                var resultMessage = null;
-                if (model.Worker.Available = false) {
-                    resultMessage = "You are already working on a job.";
-                }
-                else
-                {
-                    resultMessage = "This job has been claimed by " + result.Worker.FirstName + " " + result.Worker.LastName;
-                }
-                $('#claim-status').html(resultMessage);
+                $('#claim-status').html(result);
             }
         });
     });
