@@ -2,35 +2,39 @@
 
 
 $(document).ready(function () {
-    $('.claim').submit(function () {
-        event.preventDefault();
+    $('.claim').click(function () {
+        console.log($(this).Job.JobId);
+        console.log($(this).Job.JobId);
+        console.log($(this).Job.JobId);
+        console.log($(this).Job.JobId);
+        console.log($(this).Job.JobId);
+        console.log($(this).Job.JobId);
         $.ajax({
+            data: { id: $(this).Job.JobId },
+            url: '/Jobs/Claim',
             type: 'POST',
-            url: 'Jobs/Details/Claim',
-            dataType: 'html',
-            data: { thisJob },
             success: function (result) {
                     $('#claim-status').html(result);
             }
         });
     });
-    $('.pending').click(function () {
+    $('.pending').submit(function (event) {
+        event.preventDefault();
         $.ajax({
+            data: $(this).JobId,
+            url: 'Jobs/Details/{JobId}/Pending',
             type: 'POST',
-            url: 'Jobs/Details/Pending',
-            dataType: 'html',
-            data: { thisJob },
             success: function (result) {
                 $('#job-pending').html(result);
             }
         });
     });
-    $('.complete').click(function () {
+    $('.complete').submit(function (event) {
+        event.preventDefault();
         $.ajax({
+            data: $(this).JobId,
+            url: 'Jobs/Details//{JobId}Complete',
             type: 'POST',
-            url: 'Jobs/Details/Complete',
-            dataType: 'html',
-            data: { thisJob },
             success: function (result) {
                 $('#job-status').html(result);
             }

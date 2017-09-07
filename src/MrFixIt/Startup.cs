@@ -58,7 +58,7 @@ namespace MrFixIt
             });
             app.Run(async (error) =>
             {
-                await error.Response.WriteAsync("You should not see this message. An error has occured.");
+                await error.Response.WriteAsync("You should not see this message. An error has occurred.");
             });
         }
     }

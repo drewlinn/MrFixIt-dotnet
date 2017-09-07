@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.0",
-    "signature": "d91e71c7cf6b079a693d151d025ee981fd3c3471"
+    "signature": "eda4b87fe87b3dedf66bfd43ebadb4eb0d7a1af2"
   },
   "compilationOptions": {
     "defines": [
@@ -16,23 +16,21 @@
     ".NETCoreApp,Version=v1.0": {
       "MrFixIt/1.0.0": {
         "dependencies": {
-          "Microsoft.NETCore.App": "1.0.1",
           "Microsoft.AspNetCore.Diagnostics": "1.0.0",
+          "Microsoft.AspNetCore.Http.Abstractions": "1.1.0",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0",
+          "Microsoft.AspNetCore.Mvc": "1.0.1",
           "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
           "Microsoft.AspNetCore.Server.Kestrel": "1.0.1",
-          "Microsoft.Extensions.Logging.Console": "1.0.0",
-          "Microsoft.AspNetCore.Mvc": "1.0.1",
           "Microsoft.AspNetCore.StaticFiles": "1.0.0",
           "Microsoft.EntityFrameworkCore": "1.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0",
           "Microsoft.Extensions.Configuration.FileExtensions": "1.0.0",
           "Microsoft.Extensions.Configuration.Json": "1.0.0",
-          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0",
-          "RestSharp.NetCore": "105.2.3",
+          "Microsoft.Extensions.Logging.Console": "1.0.0",
+          "Microsoft.NETCore.App": "1.0.1",
           "Newtonsoft.Json": "9.0.1",
-          "Microsoft.AspNetCore.Http.Abstractions": "1.1.0",
-          "jQuery": "3.1.1",
-          "bootstrap": "3.3.7"
+          "RestSharp.NetCore": "105.2.3"
         },
         "runtime": {
           "MrFixIt.dll": {}
@@ -41,12 +39,6 @@
           "MrFixIt.dll": {}
         }
       },
-      "bootstrap/3.3.7": {
-        "dependencies": {
-          "jQuery": "3.1.1"
-        }
-      },
-      "jQuery/3.1.1": {},
       "Microsoft.AspNetCore.Antiforgery/1.0.1": {
         "dependencies": {
           "Microsoft.AspNetCore.DataProtection": "1.0.0",
@@ -3813,16 +3805,6 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
-    },
-    "bootstrap/3.3.7": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-3YTWhPNh6UcnUvzw9u6A2/hy2w0h4lznxPbX6FY47lFia3+Ib4zBixTpW6YieYA/b2fLXbkjoD59OjcVF3cJXw=="
-    },
-    "jQuery/3.1.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-XGsgwse025NxNPHjY7GE8HMFNzjqsa7a/PmNS1S5bVU++pNpZmiTnzUBK6OmECnqG/fIMVaAYHTnfoYd/Wz28g=="
     },
     "Microsoft.AspNetCore.Antiforgery/1.0.1": {
       "type": "package",

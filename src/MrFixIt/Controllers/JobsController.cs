@@ -59,7 +59,7 @@ namespace MrFixIt.Controllers
         public IActionResult DeleteConfirmed(int id)
         {
             var thisJob = db.Jobs.FirstOrDefault(jobs => jobs.JobId == id);
-
+            thisJob.Worker.Available = true;
             db.Jobs.Remove(thisJob);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -74,6 +74,7 @@ namespace MrFixIt.Controllers
         {
             Job thisJob = db.Jobs.FirstOrDefault(jobs => jobs.JobId == id);
             Worker thisWorker = db.Workers.FirstOrDefault(i => i.UserName == User.Identity.Name);
+  
             if (thisWorker.Available == false)
             {
                 return Content("You are already working on a job.", "text/plain");
@@ -94,7 +95,7 @@ namespace MrFixIt.Controllers
             thisJob.Pending = true;
             db.Entry(thisJob).State = EntityState.Modified;
             db.SaveChanges();
-            return Content("This job is being worked on by " + thisJob.Worker.FirstName + " " + thisJob.Worker.LastName, "text/plain");
+            return Content("This thisJob is being worked on by " + thisJob.Worker.FirstName + " " + thisJob.Worker.LastName, "text/plain");
         }
         [HttpPost]
         public IActionResult Complete(int id)
@@ -104,7 +105,7 @@ namespace MrFixIt.Controllers
             thisJob.Worker.Available = true;
             db.Entry(thisJob).State = EntityState.Modified;
             db.SaveChanges();
-            return Content("This job has been completed by " + thisJob.Worker.FirstName + " " + thisJob.Worker.LastName, "text/plain");
+            return Content("This thisJob has been completed by " + thisJob.Worker.FirstName + " " + thisJob.Worker.LastName, "text/plain");
         }
     }
 }

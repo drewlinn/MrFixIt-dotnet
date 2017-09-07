@@ -18,13 +18,18 @@
         @using (Html.BeginForm())
         {
             <h5>Job Status</h5>
-            <p>Pending</p>
-            <input type="button" class="pending" />
-            <div id="job-pending"></div>
-
-            <p>Completed</p>
-            <input type="button" class="complete"/>
-            <div id=job-status></div>
+            <form action="Pending" class="pending">
+                @Html.HiddenFor(model => model.JobId)
+                <p>Pending</p>
+                <div id="job-pending"> </div>
+                <button class="submit">Mark Pending</button>
+            </form>
+            <form action="Complete" class="complete">
+                @Html.HiddenFor(model => model.JobId)
+                <p>Completed</p>
+                <div id=job-status> </div>
+                <button class="submit">Mark Complete</button>
+            </form>
         }
     }
     else
@@ -39,8 +44,11 @@ else
         <p>This job is unclaimed</p>
         @if (User.Identity.IsAuthenticated)
         {
-            <input type="submit" value="claim" />
-            <div id="claim-status"></div>
+            <form>
+                @Html.HiddenFor(model => model.JobId)
+                <button class="claim">Claim</button>
+            </form>
+            <div id="claim-status"> </div>
         }
     }
 }
