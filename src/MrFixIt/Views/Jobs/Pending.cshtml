@@ -14,46 +14,18 @@
     });
 </script>
 
-<h2>Job Details</h2>
+<h2>Would you like to mark this job as pending?</h2>
 <hr />
-<p>@Html.DisplayFor(model => model.Title)</p>
-<p>@Html.DisplayFor(model => model.Description)</p>
-@if (Model.Worker != null)
+@using (Html.BeginForm())
 {
+    @Html.HiddenFor(model => model.JobId)
+    @Html.HiddenFor(model => model.Title)
+    @Html.HiddenFor(model => model.Description)
 
-    @if (User.Identity.Name == Model.Worker.UserName)
-    {
-        <p>You have claimed this job.</p>
-
-        @using (Html.BeginForm())
-        {
-            <h5>Job Status</h5>
-            <form action="Pending" class="pending">
-                @Html.HiddenFor(model => model.JobId)
-                <p>Pending</p>
-                <div id="job-pending"> </div>
-                <button class="submit">Mark Pending</button>
-            </form>
-            <p>Completed</p>
-            <div id=job-status> </div>
-            @Html.ActionLink("Mark this job complete", "Complete", new { id = Model.JobId })
-        }
-    }
-    else
-    {
-        <li>This Job is claimed by @Model.Worker.FirstName @Model.Worker.LastName</li>
-    }
+    <h4>@Model.Title</h4>
+    <form>
+        <button type="submit" class="pending" value="Model.JobId">In Progress</button>
+    </form>
+    <div id="job-pending"> </div>
 }
-else
-{
-    @using (Html.BeginForm())
-    {
-        <p>This job is unclaimed</p>
-        @if (User.Identity.IsAuthenticated)
-        {
-            @Html.ActionLink("Claim this Job", "Claim", new { id = Model.JobId })
-            <div id="claim-status"> </div>
-        }
-    }
-}
-<p>@Html.ActionLink("Edit", "Edit", new { id = Model.JobId }) | @Html.ActionLink("Delete", "Delete", new { id = Model.JobId }) | @Html.ActionLink("Back to List", "Index")</p>
+<p>@Html.ActionLink("Back to list", "Index")</p>
