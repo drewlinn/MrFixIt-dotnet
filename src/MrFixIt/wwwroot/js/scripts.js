@@ -2,31 +2,31 @@
 
 
 $(document).ready(function () {
-    $('.Claim').submit(function (event) {
+    $('.claim').click(function () {
         event.preventDefault();
         $.ajax({
-            type: 'GET',
+            type: 'POST',
             url: '@Url.Action("Claim")',
             success: function (result) {
                 $('#claim-status').html(result);
             }
         });
     });
-    $('Pending').submit(function (event) {
+    $('.pending').click(function () {
         $.ajax({
+            type: 'POST',
             url: '@Url.Action("Pending")',
-            type: 'GET',
-            success: function () {
-
+            success: function (result) {
+                $('#job-pending').html(result);
             }
         });
     });
-    $('Complete').submit(function (event) {
+    $('.complete').click(function () {
         $.ajax({
+            type: 'POST',
             url: '@Url.Action("Complete")',
-            type: 'GET',
-            success: function () {
-
+            success: function (result) {
+                $('#job-status').html(result);
             }
         });
     });

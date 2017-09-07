@@ -33,8 +33,7 @@ namespace MrFixIt.Controllers
         }
         public IActionResult Details(int id)
         {
-            var thisJob = db.Jobs.FirstOrDefault(job => job.JobId == id);
-
+            var thisJob = db.Jobs.Include(job => job.Worker).FirstOrDefault(job => job.JobId == id);
             return View(thisJob);
         }
         public IActionResult Edit(int id)
@@ -65,30 +64,44 @@ namespace MrFixIt.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        public IActionResult Claim(int id)
-        {
-            var thisItem = db.Jobs.FirstOrDefault(jobs => jobs.JobId == id);
-            return View(thisItem);
-        }
-
-        [HttpPost]
-        //public IActionResult Claim(string JobId)
+        //public IActionResult Claim(int id)
         //{
-        //    Job thisItem = db.Jobs.FirstOrDefault(jobs => jobs.JobId == int.Parse(JobId));
-        //    thisItem.Worker = db.Workers.FirstOrDefault(i => i.UserName == User.Identity.Name);
-        //    db.Entry(thisItem).State = EntityState.Modified;
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
+        //    var thisItem = db.Jobs.FirstOrDefault(jobs => jobs.JobId == id);
+        //    return View(thisItem);
         //}
+        [HttpPost]
         public IActionResult Claim(Job job)
         {
-            job.Worker = db.Workers.FirstOrDefault(i => i.UserName == User.Identity.Name);
+            Worker thisWorker = db.Workers.FirstOrDefault(i => i.UserName == User.Identity.Name);
+            if (thisWorker.Available == false)
+            {
+                return Content("You are already working on a job.", "text/plain");
+            }
+            else
+            { 
+                job.Worker = thisWorker;
+                job.Worker.Available = false;
+                db.Entry(job).State = EntityState.Modified;
+                db.SaveChanges();
+                return Content("This job has been claimed by " + job.Worker.FirstName + " " + job.Worker.LastName, "text/plain");
+            }
+        }
+        [HttpPost]
+        public IActionResult Pending(Job job)
+        {
             job.Pending = true;
-            job.Worker.Available = false;
             db.Entry(job).State = EntityState.Modified;
             db.SaveChanges();
-            return View("Index");
+            return Content("This job is being worked on by " + job.Worker.FirstName + " " + job.Worker.LastName, "text/plain");
         }
-
+        [HttpPost]
+        public IActionResult Complete(Job job)
+        {
+            job.Completed = true;
+            job.Worker.Available = true;
+            db.Entry(job).State = EntityState.Modified;
+            db.SaveChanges();
+            return Content("This job has been completed by " + job.Worker.FirstName + " " + job.Worker.LastName, "text/plain");
+        }
     }
 }

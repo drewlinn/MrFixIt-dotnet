@@ -15,7 +15,7 @@
                 {
                     <p class="unclaimed">
                         This job is unclaimed
-                        @Html.ActionLink("Claim this Job", "Claim", new { id = Job.JobId })
+                        @Html.ActionLink("Claim this Job", "Details", new { id = Job.JobId })
                     </p>
                 }
                 else
@@ -52,11 +52,3 @@ else
         @Html.ActionLink("Register a new account", "Register", "Account")
     </p>
 }
-
-
-
-@*Html.ActionLink("Claim This Job", "Claim", new { @text = @Job.Title, id = Job.JobId })*@
-@*<li class="claim-job">
-        This job is unclaimed.
-        <div id="status"></div>
-    </li>*@
