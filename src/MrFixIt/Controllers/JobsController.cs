@@ -59,53 +59,54 @@ namespace MrFixIt.Controllers
         public IActionResult DeleteConfirmed(int id)
         {
             var thisJob = db.Jobs.FirstOrDefault(jobs => jobs.JobId == id);
-            thisJob.Worker.Available = true;
+            if (thisJob.Worker != null)
+            { 
+                thisJob.Worker.Available = true;
+            }
             db.Jobs.Remove(thisJob);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        //public IActionResult Claim(int id)
-        //{
-        //    var thisItem = db.Jobs.FirstOrDefault(jobs => jobs.JobId == id);
-        //    return View(thisItem);
-        //}
-        [HttpPost]
         public IActionResult Claim(int id)
         {
-            Job thisJob = db.Jobs.FirstOrDefault(jobs => jobs.JobId == id);
-            Worker thisWorker = db.Workers.FirstOrDefault(i => i.UserName == User.Identity.Name);
-  
-            if (thisWorker.Available == false)
-            {
-                return Content("You are already working on a job.", "text/plain");
-            }
-            else
-            { 
-                thisJob.Worker = thisWorker;
-                thisJob.Worker.Available = false;
-                db.Entry(thisJob).State = EntityState.Modified;
-                db.SaveChanges();
-                return View("This job has been claimed by " + thisJob.Worker.FirstName + " " + thisJob.Worker.LastName, "text/plain");
-            }
+            var thisItem = db.Jobs.FirstOrDefault(jobs => jobs.JobId == id);
+            return View(thisItem);
         }
         [HttpPost]
+        public IActionResult Claim(Job job)
+        {
+            job.Worker = db.Workers.FirstOrDefault(i => i.UserName == User.Identity.Name);
+            job.Worker.Available = false;
+            db.Entry(job).State = EntityState.Modified;
+            db.SaveChanges();
+            return Json(job);
+        }
         public IActionResult Pending(int id)
         {
-            Job thisJob = db.Jobs.FirstOrDefault(jobs => jobs.JobId == id);
-            thisJob.Pending = true;
-            db.Entry(thisJob).State = EntityState.Modified;
-            db.SaveChanges();
-            return Content("This thisJob is being worked on by " + thisJob.Worker.FirstName + " " + thisJob.Worker.LastName, "text/plain");
+            var thisItem = db.Jobs.FirstOrDefault(jobs => jobs.JobId == id);
+            return View(thisItem);
         }
         [HttpPost]
+        public IActionResult Pending(Job job)
+        {
+            job.Pending = true;
+            db.Entry(job).State = EntityState.Modified;
+            db.SaveChanges();
+            return Content("This job is being worked on by " + job.Worker.FirstName + " " + job.Worker.LastName, "text/plain");
+        }
         public IActionResult Complete(int id)
         {
-            Job thisJob = db.Jobs.FirstOrDefault(jobs => jobs.JobId == id);
-            thisJob.Completed = true;
-            thisJob.Worker.Available = true;
-            db.Entry(thisJob).State = EntityState.Modified;
+            var thisItem = db.Jobs.FirstOrDefault(jobs => jobs.JobId == id);
+            return View(thisItem);
+        }
+        [HttpPost]
+        public IActionResult Complete(Job job)
+        {
+            job.Completed = true;
+            job.Worker.Available = true;
+            db.Entry(job).State = EntityState.Modified;
             db.SaveChanges();
-            return Content("This thisJob has been completed by " + thisJob.Worker.FirstName + " " + thisJob.Worker.LastName, "text/plain");
+            return Content("This job has been completed by " + job.Worker.FirstName + " " + job.Worker.LastName, "text/plain");
         }
     }
 }

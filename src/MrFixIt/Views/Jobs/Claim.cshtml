@@ -4,6 +4,28 @@
 }
 @model MrFixIt.Models.Job
 
+<script type="text/javascript">
+    $('.claim').submit(function (event) {
+        event.preventDefault;
+        $.ajax({
+            data: { id: $(this).val() },
+            url: '@Url.Action("Claim")',
+            type: 'POST',
+            success: function (result) {
+                var resultMessage = null;
+                if (model.Worker.Available = false) {
+                    resultMessage = "You are already working on a job.";
+                }
+                else
+                {
+                    resultMessage = "This job has been claimed by " + result.Worker.FirstName + " " + result.Worker.LastName;
+                }
+                $('#claim-status').html(resultMessage);
+            }
+        });
+    });
+</script>
+
 <h2>Would you like to do this job?</h2>
 <hr />
 @using (Html.BeginForm())
@@ -13,6 +35,9 @@
     @Html.HiddenFor(model => model.Description)
 
     <h4>@Model.Title</h4>
-    <input type="submit" value="Claim" />
+    <form>
+        <button type="submit" class="claim" value="Model.JobId">Claim</button>
+    </form>
+    <div id="claim-status"> </div>
 }
 <p>@Html.ActionLink("Back to list", "Index")</p>

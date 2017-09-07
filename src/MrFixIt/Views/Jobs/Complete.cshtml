@@ -1,12 +1,22 @@
-﻿@{
-    ViewData["Title"] = "Job Listing - Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-@model MrFixIt.Models.Job
+﻿@model MrFixIt.Models.Job
+
+<script type="text/javascript">
+    $('.complete').submit(function (event) {
+        event.preventDefault();
+        $.ajax({
+            data: { id: $(this).val() },
+            url: '@Url.Action("Complete")',
+            type: 'POST',
+            success: function (result) {
+                $('#job-status').html(result);
+            }
+        });
+    });
+</script>
 
 <h2>Job Details</h2>
 <hr />
-<p>@Html.DisplayFor(model => model.Title)</p> 
+<p>@Html.DisplayFor(model => model.Title)</p>
 <p>@Html.DisplayFor(model => model.Description)</p>
 @if (Model.Worker != null)
 {
@@ -18,14 +28,16 @@
         @using (Html.BeginForm())
         {
             <h5>Job Status</h5>
-                @Html.HiddenFor(model => model.JobId)
-                <p>Pending</p>
+            <p>Pending</p>
                 <div id="job-pending"> </div>
                 @Html.ActionLink("Mark this job as pending", "Pending", new { id = Model.JobId })
                 @Html.HiddenFor(model => model.JobId)
+            <form action="Complete" class="complete">
+                @Html.HiddenFor(model => model.JobId)
                 <p>Completed</p>
                 <div id=job-status> </div>
-                @Html.ActionLink("Mark this job complete", "Complete", new { id = Model.JobId })
+                <button class="submit">Mark Complete</button>
+            </form>
         }
     }
     else
