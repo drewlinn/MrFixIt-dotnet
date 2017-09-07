@@ -70,5 +70,36 @@ namespace MrFixIt.Controllers
             return View();
         }
         
+        //Possible need for refactor
+
+
+        //public IActionResult Pending(int id)
+        //{
+        //    var thisItem = db.Jobs.FirstOrDefault(jobs => jobs.JobId == id);
+        //    return View(thisItem);
+        //}
+        //[HttpPost]
+        //public IActionResult Pending(Job job)
+        //{
+        //    Worker worker = job.Worker;
+        //    job.Pending = true;
+        //    db.Entry(job).State = EntityState.Modified;
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
+        //public IActionResult Complete(int id)
+        //{
+        //    var thisItem = db.Jobs.FirstOrDefault(jobs => jobs.JobId == id);
+        //    return View(thisItem);
+        //}
+        //[HttpPost]
+        //public IActionResult Complete(Job job)
+        //{
+        //    job.Completed = true;
+        //    db.Entry(job).State = EntityState.Modified;
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
+
     }
 }

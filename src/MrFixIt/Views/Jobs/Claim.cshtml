@@ -4,20 +4,7 @@
 }
 @model MrFixIt.Models.Job
 
-<script type="text/javascript">
-    $('.claim').submit(function (event) {
-        event.preventDefault;
-        $.ajax({
-            url: '@Url.Action("Claim")',
-            type: 'POST',
-            dataType: 'json',
-            data: { id: $(this).serialize() },
-            success: function (result) {
-                $('#claim-status').html(result);
-            }
-        });
-    });
-</script>
+
 
 <h2>Would you like to do this job?</h2>
 <hr />

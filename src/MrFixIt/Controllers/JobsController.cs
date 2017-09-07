@@ -59,9 +59,10 @@ namespace MrFixIt.Controllers
         public IActionResult DeleteConfirmed(int id)
         {
             var thisJob = db.Jobs.FirstOrDefault(jobs => jobs.JobId == id);
-            if (thisJob.Worker != null)
+            Worker worker = thisJob.Worker;
+            if (worker != null)
             { 
-                thisJob.Worker.Available = true;
+                worker.Available = true;
             }
             db.Jobs.Remove(thisJob);
             db.SaveChanges();
@@ -76,19 +77,12 @@ namespace MrFixIt.Controllers
         public IActionResult Claim(Job job)
         {
             Worker worker = db.Workers.FirstOrDefault(i => i.UserName == User.Identity.Name);
-            if (worker.Available == false)
-            {
-                return Content("You are already working on a job.", "text/plain");
-            }
-            else
-            {
                 job.Worker = worker;
                 job.Worker.Available = false;
                 db.Entry(job).State = EntityState.Modified;
                 db.Entry(worker).State = EntityState.Modified;
                 db.SaveChanges();
-                return Content("This job has been claimed by " + job.Worker.FirstName + " " + job.Worker.LastName, "text/plain");
-            }
+                return RedirectToAction("Index");  
         }
         public IActionResult Pending(int id)
         {
@@ -98,12 +92,11 @@ namespace MrFixIt.Controllers
         [HttpPost]
         public IActionResult Pending(Job job)
         {
-            Worker worker = db.Workers.FirstOrDefault(i => i.UserName == User.Identity.Name);
+            Worker worker = job.Worker;
             job.Pending = true;
             db.Entry(job).State = EntityState.Modified;
-            db.Entry(worker).State = EntityState.Modified;
             db.SaveChanges();
-            return Content("This job is being worked on by " + job.Worker.FirstName + " " + job.Worker.LastName, "text/plain");
+            return RedirectToAction("Index", "Workers");
         }
         public IActionResult Complete(int id)
         {
@@ -113,13 +106,10 @@ namespace MrFixIt.Controllers
         [HttpPost]
         public IActionResult Complete(Job job)
         {
-            Worker worker = db.Workers.FirstOrDefault(i => i.UserName == User.Identity.Name);
             job.Completed = true;
-            job.Worker.Available = true;
             db.Entry(job).State = EntityState.Modified;
-            db.Entry(worker).State = EntityState.Modified;
             db.SaveChanges();
-            return Content("This job has been completed by " + job.Worker.FirstName + " " + job.Worker.LastName, "text/plain");
+            return RedirectToAction("Index", "Workers");
         }
     }
 }

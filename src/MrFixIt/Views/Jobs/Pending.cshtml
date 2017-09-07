@@ -1,18 +1,6 @@
 ﻿@model MrFixIt.Models.Job
 
-<script type="text/javascript">
-    $('.pending').submit(function (event) {
-        event.preventDefault();
-        $.ajax({
-            data: $(this).JobId,
-            url: '@Url.Action("Pending")',
-            type: 'POST',
-            success: function (result) {
-                $('#job-pending').html(result);
-            }
-        });
-    });
-</script>
+
 
 <h2>Would you like to mark this job as pending?</h2>
 <hr />

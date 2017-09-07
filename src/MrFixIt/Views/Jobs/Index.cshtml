@@ -2,6 +2,20 @@
     ViewData["Title"] = "Job Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script type="text/javascript">
+    $('.claim').submit(function (event) {
+        event.preventDefault;
+        $.ajax({
+            url: '@Url.Action("Claim")',
+            type: 'GET',
+            data: { id: $(this).serialize() },
+            success: function (result) {
+                $('#claim-status').html(result);
+            }
+        });
+    });
+</script>
+
 <h3>Our Current Jobs</h3>
 @foreach (var Job in Model)
 {

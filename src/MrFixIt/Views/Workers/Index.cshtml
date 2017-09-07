@@ -1,8 +1,35 @@
-﻿@model MrFixIt.Models.Worker
-@{
+﻿@{
     ViewData["Title"] = "Worker Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@model MrFixIt.Models.Worker
+
+<script type="text/javascript">
+    $('.complete').submit(function (event) {
+        event.preventDefault();
+        $.ajax({
+            url: '@Url.Action("Complete")',
+            type: 'GET',
+            data: { id: $(this).serialize() },
+            success: function (result) {
+                $('#job-status').html(result);
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+    $('.pending').submit(function (event) {
+        event.preventDefault();
+        $.ajax({
+            url: '@Url.Action("Pending")',
+            type: 'GET',
+            data: { id: $(this).serialize() },
+            success: function (result) {
+                $('#job-pending').html(result);
+            }
+        });
+    });
+</script>
 
 @if (User.Identity.IsAuthenticated)
 {
@@ -22,6 +49,26 @@
                 @foreach (var Job in Model.Jobs)
                 {
                     <h5>@Job.Title</h5>
+                    <p>Pending</p>
+                    @if (Job.Pending == true)
+                    {
+                        <p>This job is in progress by @Job.Worker.FirstName @Job.Worker.LastName</p>
+                    }
+                    else
+                    {
+                        <p>This job is not yet in progress</p>
+                    }
+                    @Html.ActionLink("Mark this job as pending", "Pending", "Jobs", new { id = Job.JobId })
+                    <p>Status</p>
+                    @if (Job.Completed == true)
+                    {
+                        <p>This job has been completed by @Job.Worker.FirstName @Job.Worker.LastName</p>
+                    }
+                    else
+                    {
+                        <p>This job has not yet been completed.</p>
+                    }
+                    @Html.ActionLink("Mark this job complete", "Complete", "Jobs", new { id = Job.JobId })
                 }
             }
             <p>@Html.ActionLink("View your Profile", "Details", new { id = Model.WorkerId })</p>

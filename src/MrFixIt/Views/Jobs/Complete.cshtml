@@ -1,19 +1,5 @@
 ﻿@model MrFixIt.Models.Job
 
-<script type="text/javascript">
-    $('.complete').submit(function (event) {
-        event.preventDefault();
-        $.ajax({
-            data: { id: $(this).val() },
-            url: '@Url.Action("Complete")',
-            type: 'POST',
-            success: function (result) {
-                $('#job-status').html(result);
-            }
-        });
-    });
-</script>
-
 <h2>Would you like to mark this job as complete?</h2>
 <hr />
 @using (Html.BeginForm())

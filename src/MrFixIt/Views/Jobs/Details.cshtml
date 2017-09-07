@@ -18,14 +18,26 @@
         @using (Html.BeginForm())
         {
             <h5>Job Status</h5>
-                @Html.HiddenFor(model => model.JobId)
-                <p>Pending</p>
-                <div id="job-pending"> </div>
-                @Html.ActionLink("Mark this job as pending", "Pending", new { id = Model.JobId })
-                @Html.HiddenFor(model => model.JobId)
-                <p>Completed</p>
-                <div id=job-status> </div>
-                @Html.ActionLink("Mark this job complete", "Complete", new { id = Model.JobId })
+            <p>Pending</p>
+            @if (Model.Pending == true)
+            {
+                <p>This job is in progress by @Model.Worker.FirstName @Model.Worker.LastName</p>
+            }
+            else
+            {
+                <p>This job is not yet in progress</p>
+            }
+            @Html.ActionLink("Mark this job as pending", "Pending", "Jobs", new { id = Model.JobId })
+            <p>Status</p>
+            @if (Model.Completed == true)
+            {
+                <p>This job has been completed by @Model.Worker.FirstName @Model.Worker.LastName</p>
+            }
+            else
+            {
+                <p>This job has not yet been completed.</p>
+            }
+            @Html.ActionLink("Mark this job complete", "Complete", "Jobs", new { id = Model.JobId })
         }
     }
     else
