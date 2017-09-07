@@ -1,30 +1,33 @@
-﻿@model MrFixIt.Models.Job
-@{
+﻿@{
     ViewData["Title"] = "Job Listing - Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@model MrFixIt.Models.Job
 
 <h2>Job Details</h2>
 <hr />
 <p>@Html.DisplayFor(model => model.Title)</p> 
 <p>@Html.DisplayFor(model => model.Description)</p>
+<p>@Html.DisplayFor(model => model.Worker)</p>
+<p>@Html.DisplayFor(model => model.Pending)</p>
+<p>@Html.DisplayFor(model => model.Completed)</p>
+@if (Model.Worker != null)
+{
 
-@if (Model.Worker == null)
-{
-    <li class="claim-job">This job is unclaimed.</li>
-}
-else
-{
-    @if (User.Identity.Name == Model.Worker.FirstName + " " + Model.Worker.LastName)
+    @if (User.Identity.Name == Model.Worker.UserName)
     {
         <li class="unclaim-job">You have claimed this Job</li>
-        <input class="pending" type="checkbox"/>
-        <input class="complete" type="checkbox"/>
+        <input class="pending" type="checkbox" />
+        <input class="complete" type="checkbox" />
     }
     else
     {
-        <li>This Job is claimed by @Model.Worker.FirstName @Model.Worker.LastName</li>
+        <li>This Job is claimed by @Model.Worker.UserName</li>
     }
+}
+else
+{
+   <li class="claim-job">This job is unclaimed.</li>
 }
 
 <p>@Html.ActionLink("Edit", "Edit", new { id = Model.JobId }) | @Html.ActionLink("Delete", "Delete", new { id = Model.JobId }) | @Html.ActionLink("Back to List", "Index")</p>

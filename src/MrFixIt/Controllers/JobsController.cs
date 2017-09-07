@@ -83,6 +83,8 @@ namespace MrFixIt.Controllers
         public IActionResult Claim(Job job)
         {
             job.Worker = db.Workers.FirstOrDefault(i => i.UserName == User.Identity.Name);
+            job.Pending = true;
+            job.Worker.Available = false;
             db.Entry(job).State = EntityState.Modified;
             db.SaveChanges();
             return View("Index");
